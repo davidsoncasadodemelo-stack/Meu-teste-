@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Meu Catálogo</title>
 
   <style>
@@ -25,7 +26,7 @@
 
     .catalogo {
       padding: 20px;
-      max-width: 600px;
+      max-width: 700px;
       margin: auto;
     }
 
@@ -48,6 +49,30 @@
       text-decoration: none;
       border-radius: 8px;
       margin-top: 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .botao:hover {
+      background: #b20710;
+    }
+
+    #player {
+      display: none;
+      margin-top: 20px;
+    }
+
+    video {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 12px;
+      background: black;
+    }
+
+    .fechar {
+      background: #555;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -61,6 +86,7 @@
   <main class="catalogo">
 
     <div class="filme">
+
       <h2>Meu teste</h2>
 
       <p>🎬 Esporte • 2026</p>
@@ -69,12 +95,54 @@
         Vídeo de teste do nosso catálogo.
       </p>
 
-      <a class="botao" href="https://github.com/davidsoncasadodemelo-stack/Meu-teste-/releases/download/A%C3%A7%C3%A3o/VID-20260920-WA0020.mp4" target="_blank">
-  ▶ ASSISTIR
-</a>
+      <button class="botao" onclick="abrirVideo()">
+        ▶ ASSISTIR
+      </button>
+
+      <div id="player">
+
+        <video id="video" controls playsinline>
+          <source
+            src="https://github.com/davidsoncasadodemelo-stack/Meu-teste-/releases/download/A%C3%A7%C3%A3o/VID-20260920-WA0020.mp4"
+            type="video/mp4">
+          
+          Seu navegador não consegue reproduzir este vídeo.
+        </video>
+
+        <br>
+
+        <button class="botao fechar" onclick="fecharVideo()">
+          ✖ FECHAR VÍDEO
+        </button>
+
+      </div>
+
     </div>
 
   </main>
+
+  <script>
+
+    function abrirVideo() {
+      document.getElementById("player").style.display = "block";
+
+      const video = document.getElementById("video");
+
+      video.play().catch(function() {
+        console.log("O navegador bloqueou a reprodução automática.");
+      });
+    }
+
+    function fecharVideo() {
+      const video = document.getElementById("video");
+
+      video.pause();
+      video.currentTime = 0;
+
+      document.getElementById("player").style.display = "none";
+    }
+
+  </script>
 
 </body>
 </html>
